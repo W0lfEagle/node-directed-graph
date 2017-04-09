@@ -1,8 +1,27 @@
-const Graph = require('node-dijkstra')
+// fs to read input file
+const fs = require('fs');
 
-const route = new Graph()
+// get command line arguments
+const args = process.argv.slice(2);
 
-// AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7
+// read file supplied as first argument (node graph.js input.txt)
+// Graph: AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7
+fs.readFile('./' + args[0], 'utf8', function(err, data) {  
+    if (err) throw err;
+	// Get individual node/weight pairs
+    const input = data.split(/, |: /)
+	if (input[0] == 'Graph' || input[0] == 'graph') {
+		input.shift()
+	}
+	console.log(input);
+});
+
+const Graph = require('node-dijkstra');
+const route = new Graph();
+
+input.forEach((element) => {
+	
+});
 
 route.addNode('A', { B:5, D:5, E:7 })
 route.addNode('B', { C:4 })
@@ -42,4 +61,4 @@ let outFive = function() {
 	console.log(AE)
 	console.log(ED)
 }
-outFive();
+// outFive();
